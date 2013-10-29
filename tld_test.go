@@ -20,6 +20,10 @@ var tldTests = []struct {
 	{[]byte("123"), false},
 	{[]byte("potato"), false},
 	{[]byte("xxx"), true},
+	{[]byte("co.uk"), false},
+	{[]byte("co"), true},
+	{[]byte(".co"), false},
+	{[]byte("uk"), true},
 }
 
 func Test_Valid(t *testing.T) {

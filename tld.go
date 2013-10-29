@@ -16,8 +16,10 @@ import (
 // you need to specify your own custom valid TLDs.
 var IANA = "https://data.iana.org/TLD/tlds-alpha-by-domain.txt"
 
-// Checks if the TLD is valid.
+// Checks if the TLD is found in the list. There are other requirements of a TLD
+// but we assume that if it's in our list, it's valid.
 func Valid(tld []byte) bool {
+	tld = bytes.ToLower(tld) // convert to lowercase to match our list
 	for _, t := range TLDs {
 		if bytes.Equal(tld, t) {
 			return true
