@@ -1,5 +1,5 @@
-// Package tld provides a way to verify that a given top level domain name is
-// valid. It comes with a predefined list however it can be updated at runtime
+// Package tld provides tools for validating top level domain names.
+// It comes with a predefined list however it can be updated at runtime
 // by running tld.Update(url) where url points to a text file containing a list
 // of acceptable TLDs.
 package tld
