@@ -1,3 +1,8 @@
+// Package tld provides a way to verify that a given top level domain name is
+// valid. It comes with a predefined list however it can be updated at runtime
+// by running tld.Update(url) where url points to a text file containing a list
+// of acceptable TLDs./ Package tld provides a means for validating top level
+// domain names.
 package tld
 
 import (
@@ -7,10 +12,11 @@ import (
 	"net/http"
 )
 
-// IANA is the URL to the IANA TLD list.
+// IANA is the URL to the IANA TLD list and should be used for Update() unless
+// you need to specify your own custom valid TLDs.
 var IANA = "https://data.iana.org/TLD/tlds-alpha-by-domain.txt"
 
-// Check if tld is valid.
+// Checks if the TLD is valid.
 func Valid(tld []byte) bool {
 	for _, t := range TLDs {
 		if bytes.Equal(tld, t) {
