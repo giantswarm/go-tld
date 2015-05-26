@@ -32,7 +32,7 @@ func Valid(tld []byte) bool {
 // per line, lines that start with # are ignored, and unicode domains must be
 // punycode encoded.
 func Update(url string) (err error) {
-	var TLDs = make([][]byte, 0)
+	var newTLDs = make([][]byte, 0)
 	resp, err := http.Get(url)
 	if err != nil {
 		return
@@ -58,8 +58,10 @@ func Update(url string) (err error) {
 		completeLine = line
 		if completeLine[0] != '#' {
 			tld := bytes.ToLower(completeLine)
-			TLDs = append(TLDs, tld)
+			newTLDs = append(newTLDs, tld)
 		}
 	}
+	
+	TLDs = newTLDs
 	return
 }
